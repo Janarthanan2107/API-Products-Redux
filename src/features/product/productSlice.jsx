@@ -1,3 +1,5 @@
+// this is the syntax for creating the redux slice method
+
 // import a slice method to initialize the values fo a project
 import { createSlice } from "@reduxjs/toolkit";
 
