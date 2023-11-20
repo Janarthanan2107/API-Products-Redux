@@ -1,10 +1,10 @@
-# FAQ's Application
+## Cart Page
 
 A brief description of your React application.
 
 ## Live Demo
 
-You can access a live demo of this project [here](https://dancing-gumdrop-60bca9.netlify.app/).
+You can access a live demo of this project [here](https://loquacious-taiyaki-7342de.netlify.app/).
 
 ## Installation
 
@@ -13,7 +13,7 @@ Follow these steps to get the project up and running on your local machine:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Janarthanan2107/API-Products-React.git
+   git clone https://github.com/Janarthanan2107/Cart-Reducer.git
    cd your-react-app
    ```
 
@@ -32,16 +32,16 @@ Follow these steps to get the project up and running on your local machine:
 3. **Start the development server:**
 
    ```bash
-   npm start
+   npm run dev
    ```
 
    or
 
    ```bash
-   yarn start
+   yarn run dev
    ```
 
-4. Your React application should now be running locally on [http://localhost:3000](http://localhost:3000).
+4. Your React application should now be running locally on [http://localhost:5173/](http://localhost:5173/).
 
 ## Usage
 
