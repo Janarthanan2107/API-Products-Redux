@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { url } from "./constants/index";
 import { SiRedux } from "react-icons/si";
 
+// getting the values from redux file using use selectors
+import { useSelector } from "react-redux";
+
 const App = () => {
+  const { productItems } = useSelector((state) => state.product);
+
   const [product, setProduct] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchProduct = async () => {
     try {
-      const res = await fetch(url);
+      const res = await fetch(productItems);
       const data = await res.json();
       setProduct(data);
     } catch (err) {
@@ -39,7 +43,7 @@ const App = () => {
             <p className="mt-2 text-lg leading-8 text-gray-600">
               "Get Started with Our Innovative App Today!"
             </p>
-            <SiRedux className="text-violet-600 text-4xl mt-2"/>
+            <SiRedux className="text-violet-600 text-4xl mt-2" />
           </div>
           <div className="mx-auto ">
             <input
