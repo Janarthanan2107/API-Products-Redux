@@ -31,8 +31,8 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <main>
-        <h1>Loading......</h1>
+      <main className="flex justify-center items-center h-screen">
+        <h1 className="font-bold text-2xl">Loading......</h1>
       </main>
     );
   }

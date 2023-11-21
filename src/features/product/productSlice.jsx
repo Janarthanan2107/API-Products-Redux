@@ -45,6 +45,7 @@ export const productSlice = createSlice({
       })
 
       .addCase(getProductItems.fulfilled, (state, action) => {
+        console.log(action)
         state.isLoading = false;
         state.productItems = action.payload;
       })
