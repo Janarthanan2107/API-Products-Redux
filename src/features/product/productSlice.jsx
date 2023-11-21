@@ -1,14 +1,29 @@
 // this is the syntax for creating the redux slice method
 
 // import a slice method to initialize the values fo a project
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // getting the values from the fake store api which is added in the constants index file
-import { url } from "../../constants";
+// import { url } from "../../constants";
+
+const API = "https://fakestoreapi.com/products";
+
+export const getProductItems = createAsyncThunk(
+  "products/getProductItems",
+  async () => {
+    try {
+      const response = await fetch(API);
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log("Something went wrong!!", err);
+    }
+  }
+);
 
 const initialState = {
-  productItems: url,
-  //   isLoading: true,
+  productItems: [],
+  isLoading: true,
 };
 
 export const productSlice = createSlice({
@@ -21,6 +36,22 @@ export const productSlice = createSlice({
     clearData: (state) => {
       state.productItems = [];
     },
+  },
+  // extra reducer is added in api calls
+  extraReducers: (builder) => {
+    builder
+      .addCase(getProductItems.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(getProductItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productItems = action.payload;
+      })
+
+      .addCase(getProductItems.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 

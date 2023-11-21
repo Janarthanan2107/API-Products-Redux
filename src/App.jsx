@@ -5,25 +5,40 @@ import { SiRedux } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 
 // import file which the functions are contains
-import { clearData } from "./features/product/productSlice";
+import { clearData, getProductItems } from "./features/product/productSlice";
 
 const App = () => {
+  // this two steps for access the redux
   // using use selector we can get the value from redux file
-  const { productItems } = useSelector((state) => state.product);
-  console.log(productItems);
-
+  const { productItems, isLoading } = useSelector((state) => state.product);
   // import the functions from the redux file
   const dispatch = useDispatch();
 
-  // const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    dispatch(getProductItems());
+  }, []);
 
-  // const handleSearch = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
+  // search products functions
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // const filteredProducts = productItems.filter((item) =>
-  //   item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = productItems.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (isLoading) {
+    return (
+      <main>
+        <h1>Loading......</h1>
+      </main>
+    );
+  }
+
+  // console.log("data from index:", productItems);
+  // console.log("data from filter:", filteredProducts);
 
   return (
     <div>
@@ -38,16 +53,16 @@ const App = () => {
             </p>
             <SiRedux className="text-violet-600 text-4xl mt-2" />
           </div>
-          <div className="mx-auto flex gap-3 justify-end">
-            {/* <input
+          <div className="mx-auto flex gap-3 justify-end h-[50px]">
+            <input
               type="text"
               placeholder="Search products..."
               value={searchTerm}
               onChange={handleSearch}
               className="w-[300px] p-2 border border-gray-300 rounded"
-            /> */}
+            />
             <button
-              className="py-2 px-3 rounded-lg bg-violet-600 text-white font-medium"
+              className="py-2 px-3 rounded-lg bg-violet-600 text-white font-medium w-[150px]"
               onClick={() => dispatch(clearData())}
             >
               Clear Data
@@ -57,7 +72,7 @@ const App = () => {
 
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           <>
-            {productItems.map((item) => {
+            {filteredProducts.map((item) => {
               const { id, title, price, description, category, image, rating } =
                 item;
               return (
