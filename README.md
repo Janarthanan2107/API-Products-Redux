@@ -4,7 +4,7 @@ A brief description of your React application.
 
 ## Live Demo
 
-You can access a live demo of this project [here](https://dancing-gumdrop-60bca9.netlify.app/).
+You can access a live demo of this project [here](https://scintillating-stroopwafel-f96a9f.netlify.app/).
 
 ## Installation
 
