@@ -16,8 +16,17 @@ export const productSlice = createSlice({
   // it takes minimum two arguments
   name: "products",
   initialState,
+  reducers: {
+    // this is a function which is created for clearing data from the dom
+    clearData: (state) => {
+      state.productItems = [];
+    },
+  },
 });
 
-console.log(productSlice);
+// export that function alone for using on the function component or where ever we needed
+export const { clearData } = productSlice.actions;
+
+console.log(clearData());
 
 export default productSlice.reducer;
